@@ -14,11 +14,11 @@ export default function Tools() {
     },
     {
       name: "Describe image",
-      type: "Descripcion de imagen",
+      type: "Alt para imagenes",
       link: "/describir-imagen",
     },
     {
-      name: "Guines para reels",
+      name: "Guiones para reels",
       type: "Generación de texto",
       link: "/articulo-a-guion-para-reels",
     },

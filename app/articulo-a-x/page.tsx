@@ -26,10 +26,20 @@ export default function ArticleToX() {
         <div className="flex justify-between">
           <div className="flex flex-col gap-2 mb-4">
             <h1 className="text-3xl font-bold  flex items-center gap-2">
-              Article to{" "}
+              Articulo a{" "}
               <XIcon className="w-9 h-9 text-white" stroke={"#fff"} />
-              <Button className="bg-white hover:bg-gray-100 text-black text-lg h-6 cursor-not-allowed">beta</Button>
             </h1>
+            <div className="flex gap-2">
+              <Button className="bg-white hover:bg-gray-100 text-black text-sm h-6 cursor-not-allowed">
+                Beta
+              </Button>
+              <Button className="bg-yellow-500 hover:bg-yellow-600 text-black text-sm h-6 cursor-not-allowed">
+                Español
+              </Button>
+              <Button className="bg-teal-500 hover:bg-teal-600 text-black text-sm h-6 cursor-not-allowed">
+                Inglés
+              </Button>
+            </div>
             <span className="text-sm">
               Agrega el titulo, descripcion para tener un mejor resultado
             </span>
@@ -59,11 +69,11 @@ export default function ArticleToX() {
               width="44"
               height="44"
               viewBox="0 0 24 24"
-              stroke-width="1.5"
+              strokeWidth="1.5"
               stroke="#fff"
               fill="none"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
               <path d="M12 3a9 9 0 1 0 9 9" />

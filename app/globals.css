@@ -46,11 +46,18 @@
     @apply font-heading;
   }
 
-  p {
+  p, span {
     @apply font-text;
   }
 }
 
 #article-to-x-text-area {
   border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+#blur-card {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
