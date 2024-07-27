@@ -24,7 +24,7 @@ export function CustomParameters({ parameters, setParameters }: Props) {
       type="single"
       id="blur-card"
       collapsible
-      className="w-full max-w-md mt-8 rounded-lg"
+      className="w-full mt-8 rounded-lg"
     >
       <AccordionItem value="form-settings">
         <AccordionTrigger className="flex items-center justify-between p-4 ">

@@ -1,6 +1,6 @@
 
 interface UploaderProps {
-  image: string;
+  image: string | null;
   loading: boolean;
   onUpload: (file: File) => void;
 }
@@ -8,7 +8,7 @@ interface UploaderProps {
 export function Uploader({ image, loading, onUpload }: UploaderProps) {
   return (
     <div
-      className="relative w-full max-w-md rounded-lg bg-card p-4 md:mx-0"
+      className="relative w-full rounded-lg bg-card p-4 md:mx-0"
       id="blur-card"
     >
       <div className="flex flex-col items-center justify-center space-y-4">
@@ -36,7 +36,7 @@ export function Uploader({ image, loading, onUpload }: UploaderProps) {
                 <path d="M12 3a9 9 0 1 0 9 9" />
               </svg>
             ) : image ? (
-              <img src={`http://localhost:5000/images/${image}`} alt="" className="w-40 h-40 object-cover rounded" />
+              <img src={image} alt="" className="w-40 h-40 object-cover rounded" />
             ) : (
               <>
                 <span className="">

@@ -13,9 +13,9 @@ export default function Tools() {
       link: "/articulo-a-x",
     },
     {
-      name: "Describe image",
-      type: "Alt para imagenes",
-      link: "/describir-imagen",
+      name: "Texto/CSV a grafico",
+      type: "Shadai",
+      link: "/texto-a-grafico",
     },
     {
       name: "Guiones para reels",
