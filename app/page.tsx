@@ -1,20 +1,12 @@
-"use client";
+import Home from "@/sections/home";
+import { Metadata } from "next";
 
-import Tools from "@/components/tools";
-import Broadcast from "@/components/broadcast";
-import Introduction from "@/components/introduction";
+export const metadata: Metadata = {
+  title: "Unlocking Creativity with AIfocus.sh - Artificial Intelligence in Writing",
+  description:
+    "Learn how AIfocus.sh's cutting-edge AI technology empowers writers to produce high-quality content quickly and efficiently, revolutionizing the way you create digital media articles.",
+};
 
-export default function Home() {
-  return (
-    <>
-      <main className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <Tools />
-
-        <Broadcast />
-
-        <Introduction />
-      </main>
-      {/* <TableTools /> */}
-    </>
-  );
+export default function Page() {
+  return <Home />;
 }

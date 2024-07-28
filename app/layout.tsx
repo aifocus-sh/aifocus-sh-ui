@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import "./globals.css";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Image from "next/image";
 
 const fontHeading = Inter({
   subsets: ["latin"],
@@ -42,9 +43,15 @@ export default function Layout({
         <div className="min-h-screen max-w-7xl mx-auto p-4">
           <header className="flex items-center justify-between mb-8">
             <div className="flex items-center space-x-2">
-              <img src="/logo.png" alt="AiHub.sh" className="w-8 h-8" />
+              <Image
+                src="/logo.png"
+                alt="AiHub.sh"
+                width={10}
+                height={10}
+                className="w-8 h-8"
+              />
               <Link href="/">
-                <span className="text-2xl font-bold">AIhub.sh</span>
+                <span className="text-2xl font-bold">AIfocus.sh</span>
               </Link>
             </div>
             <nav className="flex space-x-4">

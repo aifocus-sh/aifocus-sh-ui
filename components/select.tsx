@@ -7,22 +7,25 @@ import {
   SelectContent,
   SelectItem,
 } from "@/components/ui/select";
+import Image from "next/image";
 
 interface SelectProps {
   label?: string;
-  value: string;
-  options: LibraryChartsValue[];
-  onChange: (value: string) => void;
+  value: any;
+  options: any[];
+  onChange: (value: any) => void;
 }
 
 export function CustomSelect({ label, value, onChange, options }: SelectProps) {
   return (
     <div className="space-y-2 mb-2">
-      <Label htmlFor="select" className="font-medium">
-        <h2 className="text-xl font-bold mt-8 md:mt-0 flex items-center gap-2">
-          {label || "Choose a chart type"}
-        </h2>
-      </Label>
+      {label && (
+        <Label htmlFor="select" className="font-medium">
+          <h2 className="text-xl font-bold mt-8 md:mt-0 flex items-center gap-2">
+            {label}
+          </h2>
+        </Label>
+      )}
       <Select value={value} onValueChange={onChange}>
         <SelectTrigger
           id="article-to-x-text-area"
@@ -31,19 +34,17 @@ export function CustomSelect({ label, value, onChange, options }: SelectProps) {
           <SelectValue placeholder="Select an option" />
         </SelectTrigger>
         <SelectContent className="bg-background text-foreground border border-input">
-          {options?.map((option) => (
-            <SelectItem key={option.value} value={option.value}>
-              {option.label}{" "}
-              {option.image && (
-                <img
+          {options?.map((option, i) => (
+            <SelectItem key={`option-${i}`} value={option?.value || option}>
+              {option?.image && (
+                <Image
                   src={option.image}
                   alt={option.label}
                   className="h-6 w-10"
                 />
               )}
-              {option.warning && (
-                <p className="font-bold">{option.warning}</p>
-              )}
+              {option?.label || option}{" "}
+              {option?.warning && <p className="font-bold">({option.warning})</p>}
             </SelectItem>
           ))}
         </SelectContent>

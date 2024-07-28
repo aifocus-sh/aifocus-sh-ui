@@ -28,7 +28,7 @@ interface Props {
 export function PieWithTextView({ data }: Props) {
   const total = React.useMemo(() => {
     return data.object.chartData.reduce((acc, curr) => acc + curr.value, 0);
-  }, []);
+  }, [data.object.chartData]);
 
   let chartConfig = {};
 
@@ -55,7 +55,7 @@ export function PieWithTextView({ data }: Props) {
         data?.object?.title ? `${data?.object?.title}.jpg` : "chart.jpg"
       );
     }
-  }, [getDivJpg]);
+  }, [getDivJpg, data?.object?.title]);
 
   return (
     <>

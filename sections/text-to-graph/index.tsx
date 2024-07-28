@@ -11,15 +11,14 @@ import { GenerateObjectType } from "@/types/text-to-chart";
 import {
   LibraryCharts,
   LibraryChartsKeys,
-  LibraryChartsValue,
-} from "../../components/chart-view/library-charts";
+} from "@/components/chart-view/library-charts";
 
 const schema = z.object({
   prompt: z.string().min(1, { message: "Please enter a prompt" }),
   library: z.string().min(1, { message: "Please select a chart type" }),
 });
 
-export default function TextoAGrafico() {
+export default function TextToGraph() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<boolean>(false);
   const [result, setResult] = useState<GenerateObjectType | null>(null);
@@ -70,19 +69,9 @@ export default function TextoAGrafico() {
       <div>
         <div className="flex flex-col gap-2 mb-4">
           <h1 className="text-3xl font-bold  flex items-center gap-2">
-            Texto a Chart <TrendingUp className="h-8 w-8" />
+            Text to Graph
+            <TrendingUp className="h-8 w-8" />
           </h1>
-          <div className="flex gap-2">
-            <Button className="bg-white hover:bg-gray-100 text-black text-sm h-6 cursor-not-allowed">
-              Beta
-            </Button>
-            {/* <Button className="bg-yellow-500 hover:bg-yellow-600 text-black text-sm h-6 cursor-not-allowed">
-                Español
-              </Button> */}
-            <Button className="bg-teal-500 hover:bg-teal-600 text-white text-sm h-6 cursor-not-allowed">
-              Inglés
-            </Button>
-          </div>
           <span className="text-sm">
             Type the text or paste the csv content separated by commas to
             generate a chart
@@ -124,16 +113,13 @@ export default function TextoAGrafico() {
             )}
           />
 
-          <Button
-            className="w-full mt-4 bg-teal-500 hover:bg-teal-600"
-            type="submit"
-          >
-            Generar Codigo
+          <Button variant="success" type="submit" className="mt-4 w-full">
+            Generate Chart
           </Button>
 
           <div>
             <h2 className="text-xl font-bold mt-8 mb-4 flex items-center gap-2">
-              Ejemplos
+              Examples
             </h2>
 
             <div className="flex flex-col gap-4">
@@ -196,7 +182,6 @@ export default function TextoAGrafico() {
                   </p>
                 )}
               />
-
             </div>
           </div>
         </form>

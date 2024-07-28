@@ -39,7 +39,7 @@ export function AreaChartStacked({ data }: Props) {
         data?.object?.title ? `${data?.object?.title}.jpg` : "chart.jpg"
       );
     }
-  }, [getDivJpg]);
+  }, [getDivJpg, data?.object?.title]);
 
   return (
     <>

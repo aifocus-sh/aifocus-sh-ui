@@ -57,9 +57,8 @@
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-2: 340 75% 55%;
-    }
+  }
 }
-
 
 @layer base {
   * {
@@ -80,12 +79,17 @@
     @apply font-heading;
   }
 
-  p, span {
+  p,
+  span {
     @apply font-text;
   }
 }
 
 #article-to-x-text-area {
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.special-border {
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
 

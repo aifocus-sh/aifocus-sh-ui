@@ -30,7 +30,7 @@ export function ResultView({ isLoading, result, error }: Props) {
     <div>
       <div className="flex flex-col gap-2 mb-4">
         <h2 className="text-2xl font-bold mt-8 md:mt-0 flex items-center gap-2">
-          Resultado
+          Result
           {isLoading && (
             <div className="flex items-center gap-2">
               <svg

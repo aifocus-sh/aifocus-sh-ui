@@ -8,8 +8,14 @@ import { SimpleAreaChartView } from "./charts/simple-area";
 import { SimpleAreaChartSchema } from "./charts/simple-area/schema";
 
 export type LibraryChartsKeys = keyof typeof LibraryCharts;
-export type LibraryChartsValue =
-  (typeof LibraryCharts)[keyof typeof LibraryCharts];
+export type LibraryChartsValue = {
+  label: string;
+  warning?: string;
+  value: string;
+  image: string;
+  Component: any;
+  schema: any;
+}
 
 export const LibraryCharts = {
   AreaChartStacked: {

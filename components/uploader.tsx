@@ -1,3 +1,4 @@
+import Image from "next/image";
 
 interface UploaderProps {
   image: string | null;
@@ -36,7 +37,7 @@ export function Uploader({ image, loading, onUpload }: UploaderProps) {
                 <path d="M12 3a9 9 0 1 0 9 9" />
               </svg>
             ) : image ? (
-              <img src={image} alt="" className="w-40 h-40 object-cover rounded" />
+              <Image src={image} alt="" className="w-40 h-40 object-cover rounded" />
             ) : (
               <>
                 <span className="">
