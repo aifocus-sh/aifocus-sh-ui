@@ -37,7 +37,23 @@ This template ships with Llama3 as the default. However, thanks to the [Vercel A
 
 ## Getting Started
 
-First, run the development server:
+First, install dependencies:
+
+```bash
+npm i
+```
+
+Install ollama in your computer:
+
+[Install ollama](https://ollama.com/download)
+
+Pull the model:
+
+```bash
+ollama pull llama3
+```
+
+Run the development server:
 
 ```bash
 npm run dev
@@ -54,6 +70,12 @@ bun dev
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+Set the environment variable *PUBLIC_NEXT_OLLAMA_LINK*
+
+```bash
+PUBLIC_NEXT_OLLAMA_LINK=http://localhost:11434/api
+```
 
 ## Authors
 
