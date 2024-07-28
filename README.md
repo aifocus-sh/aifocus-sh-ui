@@ -57,6 +57,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ## Authors
 
-This library is created by [Vercel](https://vercel.com) and [Next.js](https://nextjs.org) team members, with contributions from:
+This library is created by [Ivan Montes](https://vercel.com) and [Next.js](https://nextjs.org) team members, with contributions from:
 
-- Ivan Montes ([@iandres_montes]([https://twitter.com/jaredpalmer](https://x.com/iandres_montes))) - [La Silla Vacía]([https://vercel.com](https://www.lasillavacia.com/))
+- Iván Montes ([@iandres_montes](https://twitter.com/iandres_montes)) - [La Silla Vacía](https://www.lasillavacia.com/)
+
