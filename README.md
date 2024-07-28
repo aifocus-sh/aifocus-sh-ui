@@ -57,7 +57,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ## Authors
 
-Contributions from:
-
 - Iván Montes ([@iandres_montes](https://twitter.com/iandres_montes)) - [La Silla Vacía](https://www.lasillavacia.com/)
 
