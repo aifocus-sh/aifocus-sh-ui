@@ -8,17 +8,20 @@ import {
   SelectItem,
 } from "@/components/ui/select";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 
 interface SelectProps {
   label?: string;
   value: any;
   options: any[];
+  placeholder?: string;
   onChange: (value: any) => void;
+  className?: string;
 }
 
-export function CustomSelect({ label, value, onChange, options }: SelectProps) {
+export function CustomSelect({ label, value, onChange, options, placeholder, className }: SelectProps) {
   return (
-    <div className="space-y-2 mb-2">
+    <div className="space-y-2 min-w-[120px]">
       {label && (
         <Label htmlFor="select" className="font-medium">
           <h2 className="text-xl font-bold mt-8 md:mt-0 flex items-center gap-2">
@@ -29,13 +32,13 @@ export function CustomSelect({ label, value, onChange, options }: SelectProps) {
       <Select value={value} onValueChange={onChange}>
         <SelectTrigger
           id="article-to-x-text-area"
-          className="bg-black text-white border border-input hover:bg-gray-800"
+          className={cn("bg-black text-white border border-input hover:bg-gray-800", className)}
         >
-          <SelectValue placeholder="Select an option" />
+          <SelectValue placeholder={placeholder || "Select an option"} />
         </SelectTrigger>
         <SelectContent className="bg-background text-foreground border border-input">
           {options?.map((option, i) => (
-            <SelectItem key={`option-${i}`} value={option?.value || option}>
+            <SelectItem key={`option-${i}-${option.value || option}`} value={option?.value || option}>
               {option?.image && (
                 <Image
                   src={option.image}

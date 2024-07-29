@@ -1,6 +1,7 @@
 import { generateObject, streamObject } from "ai";
 import { ollama } from "ollama-ai-provider";
 import { z } from "zod";
+import { InstagramCaptionSchema } from "./schema";
 const model = ollama("llama3");
 
 const schema = z.object({
@@ -42,14 +43,7 @@ export async function POST(request: Request) {
     const result = await streamObject({
       model,
       mode: "json",
-      schema: z.object({
-        examples: z.array(
-          z.object({
-            title: z.string(),
-            description: z.string(),
-          })
-        ),
-      }),
+      schema: InstagramCaptionSchema,
       prompt: `You are a marketing expert specialized in creating eye-catching posts for Instagram. You will receive the following information and you must improve the title and description using relevant emojis and hashtags. Make sure to keep the tone indicated by the user.
       
       title: ${title}
@@ -67,11 +61,12 @@ export async function POST(request: Request) {
         - Use emojis and hashtags to make the content more engaging.
         - Keep the message clear and persuasive.
         - use “quantity” to generate the number of examples that the user requested to generate.
+        - use strictly the language of the title and description text.
 
       `,
       temperature: temperature || 0.7,
     });
-    return Response.json(result.toTextStreamResponse(), { status: 200 });
+    return result.toTextStreamResponse();
   } catch (error) {
     console.log(error);
     return Response.json(error, { status: 500 });

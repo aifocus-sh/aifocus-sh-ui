@@ -31,18 +31,18 @@ export default function Tools() {
     {
       name: "Instagram caption",
       description: "Generate the perfect caption for your Instagram posts",
-      link: "/ai-writer/seo-meta-tags",
+      link: "/instagram-caption",
     },
     {
-      name: "Guion for reels",
-      description: "Create a guion for your reels",
-      link: "/articulo-a-guion-para-reels",
+      name: "Reel Script Generator",
+      description: "Cut down on the time and effort it takes to create winning Instagram Reels with our powerful AI Script Generator.",
+      link: "/reel-script-generator",
     },
     {
       name: "Article generator",
       description:
         "Generate an article for your service, product or page with our AI",
-      link: "/articulo-a-imagen",
+      link: "/article-generator",
     },
   ];
   return (
