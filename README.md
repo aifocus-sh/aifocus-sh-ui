@@ -4,7 +4,7 @@
 </a>
 
 <p align="center">
-  Una plataforma para la generación de texto, especializada en la generación de contenidos para redes sociales y artículos.
+  Un stack de herramientas con IA que te ayuden a generar contenido para redes sociales. Entre sus herramientas estan: Creacion de hilos de twitter/X, creacion de articulos, mejora de seo meta tags, creacion de graficos utilizando Shadcn y Recharts, entre otras herramientas...
 </p>
 
 <p align="center">
