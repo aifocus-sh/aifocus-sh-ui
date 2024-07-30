@@ -192,7 +192,7 @@ export async function POST(request: Request) {
   }
 }
 
-export async function getMedia(type: string, q: string, category: string) {
+async function getMedia(type: string, q: string, category: string) {
   if (!process.env.PIXABAY_TOKEN) {
     throw new Error("PUBLIC_NEXT_PIXABAY_TOKEN is not defined");
   }
