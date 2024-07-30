@@ -21,14 +21,15 @@
 - [Next.js](https://nextjs.org) App Router
 - React Server Components (RSCs), Suspense, and Server Actions
 - [Vercel AI SDK](https://sdk.vercel.ai/docs) for streaming chat UI
-- [Ollama and Llama3](https://ollama.com/library/llama3)
+- [Ollama](https://ollama.com/)
+- [Llama3](https://ollama.com/library/llama3)
+- [Llama3.1](https://ollama.com/library/llama3.1)
 - [Recharts](https://recharts.org/en-US/) for chart generation
+- [React Hook Form](https://react-hook-form.com/get-started)
 - [shadcn/ui](https://ui.shadcn.com)
   - Styling with [Tailwind CSS](https://tailwindcss.com)
   - [Radix UI](https://radix-ui.com) for headless component primitives
   - Icons from [Lucide](https://lucide.dev/icons/)
-- History, rate limiting, and session storage with [MongoDB Atlas Database](https://www.mongodb.com/products/platform/atlas-database)
-- [NextAuth.js](https://github.com/nextauthjs/next-auth) for authentication
 
 
 ## Model Providers
