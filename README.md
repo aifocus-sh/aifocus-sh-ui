@@ -38,6 +38,7 @@ Este template utiliza con Llama3 y llama3.1 por defecto. Sin embargo, gracias al
 
 ## Getting Started
 
+
 First, install dependencies:
 
 ```bash
@@ -52,6 +53,13 @@ Pull the model:
 
 ```bash
 ollama pull llama3.1:70b
+```
+
+Export the variable or copy .env.local:
+
+```bash
+export OLLAMA_BASE_URL="http://localhost:11434/api"
+export OLLAMA_MODEL="<llama-model>"
 ```
 
 Run the development server:
