@@ -132,12 +132,12 @@ export default function TextToGraph() {
                     onClick={() => {
                       setValue("library", "AreaChartStacked");
                       onChange(
-                        "month,autos_nuevos,autos_usados\nJanuary,150,200\nFebruary,180,220\nMarch,10,210\nApril,190,230\nMay,200,12\nJune,210,250"
+                        "month,cars_shell,cars_buy,cars_rented\nEnero,15,20,6\nFebrero,18,22,8\nMarzo,19,23,10\nAbril,24,30,5\nMayo,28,19,17\nJunio,21,25,10"
                       );
                     }}
                   >
                     {
-                      "month,autos_nuevos,autos_usados\nJanuary,150,200\nFebruary,180,220\nMarch,10,210\nApril,190,230\nMay,200,12\nJune,210,250"
+                      "month,cars_shell,cars_buy,cars_rented\nEnero,15,20,6\nFebrero,18,22,8\nMarzo,19,23,10\nAbril,24,30,5\nMayo,28,19,17\nJunio,21,25,10"
                     }
                   </p>
                 )}

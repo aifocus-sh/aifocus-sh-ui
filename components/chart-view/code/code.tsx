@@ -8,16 +8,18 @@ hljs.registerLanguage("typescript", typescript);
 type Props = {
   code: string | null;
   filename?: string;
+  language?: string;
 };
 export default function Code({
   code,
   filename,
+  language = "typescript",
 }: Props) {
 
   if (!code) return null;
 
   const highlightedCode = hljs.highlight(code, {
-    language: "typescript",
+    language,
 
   }).value;
 

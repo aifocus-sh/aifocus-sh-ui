@@ -60,9 +60,10 @@ export function ResultView({ isLoading, result, error }: Props) {
       </div>
       {result && !isLoading && (
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-2">
+          <TabsList className="grid w-full grid-cols-3">
             <TabsTrigger value="chart">Chart</TabsTrigger>
-            <TabsTrigger value="codigo">Codigo</TabsTrigger>
+            <TabsTrigger value="codigo">Code</TabsTrigger>
+            <TabsTrigger value="json">JSON</TabsTrigger>
           </TabsList>
           <TabsContent value="chart" forceMount hidden={activeTab !== "chart"}>
             {Component && <Component data={result} />}
@@ -73,6 +74,13 @@ export function ResultView({ isLoading, result, error }: Props) {
             hidden={activeTab !== "codigo"}
           >
             <Code filename="Chart.tsx" code={code as string} />
+          </TabsContent>
+          <TabsContent
+            value="json"
+            forceMount
+            hidden={activeTab !== "json"}
+          >
+            <Code filename="data.json" code={JSON.stringify(result?.object, null, 2) as string} language="json" />
           </TabsContent>
         </Tabs>
       )}

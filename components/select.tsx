@@ -43,6 +43,8 @@ export function CustomSelect({ label, value, onChange, options, placeholder, cla
                 <Image
                   src={option.image}
                   alt={option.label}
+                  width={40}
+                  height={24}
                   className="h-6 w-10"
                 />
               )}

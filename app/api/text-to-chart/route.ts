@@ -1,8 +1,8 @@
 import { generateObject } from "ai";
-import { ollama } from "ollama-ai-provider";
 import { LibraryCharts, LibraryChartsKeys } from "@/components/chart-view/library-charts";
+import ollama from "@/lib/ollama";
 
-const model = ollama("llama3");
+const model = ollama(process.env.OLLAMA_MODEL || "llama3.1:70b");
 export async function POST(request: Request) {
   const { prompt, library }:{prompt: string, library: LibraryChartsKeys} = await request.json();
 
@@ -15,7 +15,7 @@ export async function POST(request: Request) {
       model,
       mode: "json",
       schema: LibraryCharts[library].schema as any,
-      prompt: `Analyzes the text for sufficient information to create a chart: ${prompt}`,
+      prompt: (LibraryCharts[library].prompt as string).replace('{{text}}', prompt),
       temperature: 0.7,
       
     });

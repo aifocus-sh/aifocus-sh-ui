@@ -72,39 +72,26 @@ export function AreaChartStacked({ data }: Props) {
                 cursor={false}
                 content={<ChartTooltipContent indicator="dot" />}
               />
-              <Area
-                dataKey="valueOne"
-                type="natural"
-                fill={
-                  data?.object?.chartConfig?.valueOne?.color ||
-                  "hsl(173 58% 39%)"
-                }
-                fillOpacity={0.4}
-                stroke={
-                  data?.object?.chartConfig?.valueOne?.color ||
-                  "hsl(173 58% 39%)"
-                }
-                stackId="a"
-              />
-              <Area
-                dataKey="valueTwo"
-                type="natural"
-                fill={
-                  data?.object?.chartConfig?.valueTwo?.color ||
-                  "hsl(12 76% 61%)"
-                }
-                fillOpacity={0.4}
-                stroke={
-                  data?.object?.chartConfig?.valueTwo?.color ||
-                  "hsl(12 76% 61%)"
-                }
-                stackId="a"
-              />
+
+              {Object.keys(data?.object?.chartConfig).map((key: string) => (
+                <Area
+                  key={`config-${key}`}
+                  dataKey={key}
+                  type="natural"
+                  fill={data?.object?.chartConfig?.[key]?.color}
+                  fillOpacity={0.4}
+                  stroke={data?.object?.chartConfig?.[key]?.color}
+                  stackId="a"
+                />
+              ))}
             </AreaChart>
           </ChartContainer>
         </CardContent>
       </Card>
-      <Button onClick={handleDivDownload} className="w-full mt-4 bg-teal-500 hover:bg-teal-600">
+      <Button
+        onClick={handleDivDownload}
+        className="w-full mt-4 bg-teal-500 hover:bg-teal-600"
+      >
         Download Chart image
         <DownloadCloud className="w-6 h-6 ml-2" />
       </Button>

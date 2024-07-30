@@ -86,8 +86,6 @@ export default function ChooseHeadings({
     // ;
   }, [context.current.currentStep]);
 
-  console.log(watch("headings"))
-
   return (
     <div
       className={`h-full w-full flex flex-col justify-between ${

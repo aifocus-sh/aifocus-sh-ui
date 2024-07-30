@@ -1,15 +1,8 @@
 "use client";
 
 import React, { Fragment, useState } from "react";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import { Controller, Resolver, useForm } from "react-hook-form";
-import { CustomSelect } from "@/components/select";
-import { ChevronRightIcon, Edit2, Loader2 } from "lucide-react";
-import { Skeleton } from "@/components/ui/skeleton";
-import { range } from "@/lib/utils";
+import { Resolver, useForm } from "react-hook-form";
+
 import StepPagination from "./step-pagination";
 import WriteKeyword from "./write-keyword";
 import ChooseTitle from "./choose-title";
@@ -84,7 +77,7 @@ export function ArticleGenerator() {
       };
 
       return result;
-    }else if (
+    } else if (
       ctx.currentStep === 3 &&
       !data.paragraph &&
       ctx.submitter === "next"

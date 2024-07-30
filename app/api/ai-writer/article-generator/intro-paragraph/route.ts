@@ -1,5 +1,5 @@
+import ollama from "@/lib/ollama";
 import { generateObject } from "ai";
-import { ollama } from "ollama-ai-provider";
 import { z } from "zod";
 
 export async function POST(req: Request) {
@@ -11,7 +11,7 @@ export async function POST(req: Request) {
 
   try {
     const result = await generateObject({
-      model: ollama("llama3.1"),
+      model: ollama(process.env.OLLAMA_MODEL || "llama3.1:70b"),
       mode: "json",
       schema: z.object({ examples: z.array(z.string()) }),
       presencePenalty: 0.9,

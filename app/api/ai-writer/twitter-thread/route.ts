@@ -1,8 +1,8 @@
-import { generateObject, streamObject } from "ai";
-import { ollama } from "ollama-ai-provider";
+import { streamObject } from "ai";
 import { z } from "zod";
 import { TwitterThread } from "./schema";
-const model = ollama("llama3");
+import ollama from "@/lib/ollama";
+const model = ollama(process.env.OLLAMA_MODEL || "llama3.1:70b")
 
 const schema = z.object({
   topic: z.string(),
