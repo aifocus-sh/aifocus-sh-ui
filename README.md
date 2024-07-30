@@ -51,8 +51,7 @@ Install ollama in your computer:
 Pull the model:
 
 ```bash
-ollama pull llama3
-ollama pull llama3.1
+ollama pull llama3.1:70b
 ```
 
 Run the development server:
