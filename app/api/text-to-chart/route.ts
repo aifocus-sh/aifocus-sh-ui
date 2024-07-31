@@ -2,7 +2,7 @@ import { generateObject } from "ai";
 import { LibraryCharts, LibraryChartsKeys } from "@/components/chart-view/library-charts";
 import ollama from "@/lib/ollama";
 
-const model = ollama(process.env.OLLAMA_MODEL || "llama3.1:70b");
+const model = ollama(process.env.OLLAMA_MODEL || "llama3.1");
 export async function POST(request: Request) {
   const { prompt, library }:{prompt: string, library: LibraryChartsKeys} = await request.json();
 
