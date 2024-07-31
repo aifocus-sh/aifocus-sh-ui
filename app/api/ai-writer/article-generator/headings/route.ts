@@ -2,6 +2,8 @@ import ollama from "@/lib/ollama";
 import { generateObject } from "ai";
 import { z } from "zod";
 
+export const maxDuration = 60;
+
 export async function POST(req: Request) {
   const {
     keyword,

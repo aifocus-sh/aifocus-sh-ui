@@ -5,6 +5,8 @@ import ollama from "@/lib/ollama";
 
 const model = ollama("llama3.1");
 
+export const maxDuration = 60;
+
 const schemaJsonValidator = z.object({
   title: z.string(),
   description: z.string().min(2),

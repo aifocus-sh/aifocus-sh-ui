@@ -4,6 +4,9 @@ import { SeoMetaTagsSchema } from "./schema";
 import ollama from "@/lib/ollama";
 const model = ollama("llama3.1")
 
+export const maxDuration = 60;
+
+
 const schema = z.object({
   keyword: z.string(),
   name: z.string().min(2),

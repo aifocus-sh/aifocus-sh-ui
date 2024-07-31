@@ -4,6 +4,8 @@ import { InstagramCaptionSchema } from "./schema";
 import ollama from "@/lib/ollama";
 const model = ollama("llama3.1");
 
+export const maxDuration = 60;
+
 const schema = z.object({
   title: z.string(),
   tone: z.enum([
