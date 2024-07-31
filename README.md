@@ -16,10 +16,6 @@
 </p>
 <br/>
 
-EL VPS CON GPU ES MUY COSTOSO Y NO SABRIA CUANTO COSTARIA SI UTILIZARA UN PROVEEDOR DE TERCERO PARA EL MODELO... POR EL TRAFICO Y EL USO, ASI QUE LO SIENTO POR COMO DEMORA EN RESPONDER 😂😂
-Por esta razon el servicio desplegado no funciona correctamente, si quisiera probar los promps y la generacion de objetos seria mejor descargando y ejecutando el proyecto en local
-
-
 ## Features
 
 - [Next.js](https://nextjs.org) App Router
