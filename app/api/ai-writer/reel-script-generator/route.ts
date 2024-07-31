@@ -3,7 +3,7 @@ import { z } from "zod";
 import { ReelScriptGeneratorSchema } from "./schema";
 import ollama from "@/lib/ollama";
 
-const model = ollama(process.env.OLLAMA_MODEL || "llama3.1");
+const model = ollama("llama3.1");
 
 const schemaJsonValidator = z.object({
   title: z.string(),

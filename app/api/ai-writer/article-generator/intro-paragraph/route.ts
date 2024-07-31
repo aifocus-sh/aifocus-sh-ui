@@ -11,7 +11,7 @@ export async function POST(req: Request) {
 
   try {
     const result = await generateObject({
-      model: ollama(process.env.OLLAMA_MODEL || "llama3.1"),
+      model: ollama("llama3.1"),
       mode: "json",
       schema: z.object({ examples: z.array(z.string()) }),
       presencePenalty: 0.9,
