@@ -65,12 +65,29 @@ export async function POST(request: Request) {
         - If possible, use the topic indicated by the user to generate the tweets.
 
       Be sure to keep the tone ${tone} in every tweet and thread.
+
+      your response should be in json format. For example:
+
+      {
+        "examples": [
+          {
+            "main_tweet": string,
+            "thread": [
+              {
+                "tweet": string
+              }
+            ]
+          }
+        ]
+      }
+
       `,
       temperature: temperature || 0.7,
     });
     return result.toTextStreamResponse()
   } catch (error) {
     console.log(error);
+    console.log("process.env.OLLAMA_MODEL: ", process.env.OLLAMA_MODEL);
     return Response.json(error, { status: 500 });
   }
 }

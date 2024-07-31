@@ -18,6 +18,7 @@ export default function ViewResults({ object }: ViewResultsProps) {
       console.log(`texto copiado del id: ${id}`);
     });
   };
+  console.log(object);
   return (
     <Accordion
       type="multiple"
@@ -36,6 +37,8 @@ export default function ViewResults({ object }: ViewResultsProps) {
                   <Image
                     src="/logo.png"
                     alt="Aifocus logo"
+                    width={40}
+                    height={40}
                     className="w-10 h-10 rounded-full bg-white"
                   />
                   <div>
@@ -79,6 +82,8 @@ export default function ViewResults({ object }: ViewResultsProps) {
                   <Image
                     src="/logo.png"
                     alt="Aifocus logo"
+                    width={40}
+                    height={40}
                     className="w-10 h-10 rounded-full bg-white"
                   />
                   <div className="w-[2px] h-full bg-white"></div>

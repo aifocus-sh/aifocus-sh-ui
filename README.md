@@ -56,7 +56,7 @@ Install ollama in your computer:
 Pull the model:
 
 ```bash
-ollama pull llama3.1:70b
+ollama pull llama3.1
 ```
 
 Export the variable or copy .env.local:
