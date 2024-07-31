@@ -4,6 +4,8 @@ import { TwitterThread } from "./schema";
 import ollama from "@/lib/ollama";
 const model = ollama(process.env.OLLAMA_MODEL || "llama3.1:70b")
 
+export const maxDuration = 60;
+
 const schema = z.object({
   topic: z.string(),
   tone: z.enum([
