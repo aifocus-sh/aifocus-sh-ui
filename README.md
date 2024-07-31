@@ -16,6 +16,10 @@
 </p>
 <br/>
 
+EL VPS CON GPU ES MUY COSTOSO Y NO SABRIA CUANTO COSTARIA SI UTILIZARA UN PROVEEDOR DE TERCERO PARA EL MODELO... POR EL TRAFICO Y EL USO, ASI QUE LO SIENTO POR COMO DEMORA EN RESPONDER 😂😂
+Por esta razon el servicio desplegado no funciona correctamente, si quisiera probar los promps y la generacion de objetos seria mejor descargando y ejecutando el proyecto en local
+
+
 ## Features
 
 - [Next.js](https://nextjs.org) App Router
@@ -76,6 +80,8 @@ bun dev
 
 ## Conclusions
 Fue un reto bastante interesante, descubri muchas cosas por primera vez y me sorprendio mucho la facilidad con la que alguien puede crear su propia herramienta de AI, utilizando [Vercel AI SDK](https://sdk.vercel.ai/docs) cualquiera puede construir y servir su modelo al publico. Aunque claro, siento que aun le hace falta trabajo al SDK ai, el `experimental_useObject` falla muchas veces y claro, entiendo que aun esta de forma experimental o beta. Tambien seria bueno que pudiese tener un refetch, eso ayudaria a refrescar resultados evitando asi `submit()`
+
+Ejecutarlo en CPU ha sido todo un problema, a pesar de tener un cercer con 16 cores, 64 de ram y utilizando solo el modelo de 4GB htop indica que el procesador esta trabajando a tope con un solo request, eso inutiliza la aplicacion web, es una pena, si tienes gpu te recomiendo mejor descargarlo y probarlo en local...
 
 La parte mas dificil fue parar, por eso creo que pude crear varios ejemplos de uso, espero que este proyecto le sirva a alguien. Si quiesieras participar o continuar con esta idea te dejo aqui mi twitter ([@iandres_montes](https://twitter.com/iandres_montes))
 
