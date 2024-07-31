@@ -33,11 +33,11 @@ export default function Tools() {
       description: "Generate the perfect caption for your Instagram posts",
       link: "/instagram-caption",
     },
-    {
-      name: "Reel Script Generator",
-      description: "Cut down on the time and effort it takes to create winning Instagram Reels with our powerful AI Script Generator.",
-      link: "/reel-script-generator",
-    },
+    // {
+    //   name: "Reel Script Generator",
+    //   description: "Cut down on the time and effort it takes to create winning Instagram Reels with our powerful AI Script Generator.",
+    //   link: "/reel-script-generator",
+    // },
     {
       name: "Article generator",
       description:

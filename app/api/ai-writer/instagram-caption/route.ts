@@ -65,6 +65,16 @@ export async function POST(request: Request) {
         - use “quantity” to generate the number of examples that the user requested to generate.
         - use strictly the language of the title and description text.
 
+      Response schema: 
+      {
+        "examples": [
+          {
+            "title": string,
+            "description": string
+          }
+        ]
+      }
+
       `,
       temperature: temperature || 0.7,
     });

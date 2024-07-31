@@ -29,7 +29,7 @@ export default function InstagramCaption() {
   const { control, handleSubmit } = useForm({
     defaultValues: {
       title: "",
-      tone: "",
+      tone: "excited",
       description: "",
       quantity: 2,
       temperature: 0.7,
