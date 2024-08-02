@@ -9,6 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Slider } from "@/components/ui/slider";
 import { useState } from "react";
 import { InstagramCaptionSchema } from "@/app/api/ai-writer/instagram-caption/schema";
+import { toast } from "react-toastify";
 
 const schema = z.object({
   title: z.string().min(2),
@@ -24,6 +25,10 @@ export default function InstagramCaption() {
   const { object, submit, isLoading, stop } = useObject({
     api: "/api/ai-writer/instagram-caption",
     schema: InstagramCaptionSchema,
+    onError: (error) => {
+      stop();
+      toast.info(JSON.parse(error.message as any).error);
+    }
   });
 
   const { control, handleSubmit } = useForm({

@@ -2,6 +2,7 @@ import { streamObject } from "ai";
 import { z } from "zod";
 import { TwitterThread } from "./schema";
 import ollama from "@/lib/ollama";
+import { validateRateLimit } from "@/utils/Ratelimit";
 const model = ollama("llama3.1")
 
 export const maxDuration = 60;
@@ -40,6 +41,12 @@ export async function POST(request: Request) {
       { error: true, message: validateRequest.error?.issues },
       { status: 400 }
     );
+  }
+
+  //validate limit rate with  upstash
+  const rateLimit = await validateRateLimit();
+  if (!rateLimit.isPermitted) {
+    return Response.json({ error: `${rateLimit.message}` }, { status: 429 });
   }
 
   try {

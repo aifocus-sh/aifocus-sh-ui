@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Controller } from "react-hook-form";
+import { toast } from "react-toastify";
 import { z } from "zod";
 
 interface Props {
@@ -47,8 +48,16 @@ export default function ChooseTitle({ control, watch, step, context }: Props) {
         language: watch("language"),
         quantity: watch("quantity"),
         ...last,
-      }),
+      })
+
     });
+
+    if  (!response.ok){
+      const json = await response.json();
+      setLoading(false);
+      toast.info(json.error);
+      return;
+    }
 
     const json = await response.json();
     if (action === "regenerate") {

@@ -1,6 +1,7 @@
 import { generateObject } from "ai";
 import { LibraryCharts, LibraryChartsKeys } from "@/components/chart-view/library-charts";
 import ollama from "@/lib/ollama";
+import { validateRateLimit } from "@/utils/Ratelimit";
 
 const model = ollama("llama3.1");
 
@@ -12,6 +13,12 @@ export async function POST(request: Request) {
   if(!library){
     return Response.json({error: "Library not found"}, { status: 404 });
   }
+
+    //validate limit rate with  upstash
+    const rateLimit = await validateRateLimit();
+    if (!rateLimit.isPermitted) {
+      return Response.json({ error: `${rateLimit.message}` }, { status: 429 });
+    }
 
   try {
     const result = await generateObject({

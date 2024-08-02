@@ -6,6 +6,8 @@ import "./globals.css";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
+import {ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const fontHeading = Inter({
   subsets: ["latin"],
@@ -85,6 +87,19 @@ export default function Layout({
           </header>
           {children}
         </div>
+        <ToastContainer
+        position="bottom-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        style={{ fontSize: '1.5rem !important' }}
+      />
       </body>
     </html>
   );

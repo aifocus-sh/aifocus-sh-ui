@@ -9,6 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Slider } from "@/components/ui/slider";
 import { useState } from "react";
 import { SeoMetaTagsSchema } from "@/app/api/ai-writer/seo-meta-tags/schema";
+import { toast } from "react-toastify";
 
 const schema = z.object({
   keyword: z.string().min(2),
@@ -26,6 +27,10 @@ export default function SeoMetaTags() {
   const { object, submit, isLoading, stop } = useObject({
     api: "/api/ai-writer/seo-meta-tags",
     schema: SeoMetaTagsSchema,
+    onError: (error) => {
+      stop();
+      toast.info(JSON.parse(error?.message as any)?.error);
+    }
   });
 
   const { control, handleSubmit } = useForm({
