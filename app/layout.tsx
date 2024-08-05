@@ -80,9 +80,9 @@ export default function Layout({
                 </svg>
                 <span className="font-bold">GitHub</span>
               </Link>
-              <Button className="bg-[#009E5B] hover:bg-[#009e5ce0] text-white disabled cursor-not-allowed">
+              <Link href={'/auth/login'} className="bg-[#009E5B] hover:bg-[#009e5ce0] text-white rounded-lg px-4 py-2">
                 Login
-              </Button>
+              </Link>
             </nav>
           </header>
           {children}
