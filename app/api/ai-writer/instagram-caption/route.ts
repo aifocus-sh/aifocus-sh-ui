@@ -87,7 +87,6 @@ export async function POST(request: Request) {
 		});
 		return result.toTextStreamResponse();
 	} catch (error) {
-		console.log(error);
 		return Response.json(error, { status: 500 });
 	}
 }

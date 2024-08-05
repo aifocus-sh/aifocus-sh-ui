@@ -3,11 +3,15 @@
 import { Inter, Manrope } from "next/font/google";
 import { cn } from "@/lib/utils";
 import "./globals.css";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
-import {ToastContainer} from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { getServerSession } from "next-auth";
+import { signOut } from 'next-auth/react';
+import { authOptions } from "./api/auth/[...nextauth]/route";
+import { CircleUser } from "lucide-react";
+import { ButtonLogout } from "./auth/logout/buttonLogout";
 
 const fontHeading = Inter({
   subsets: ["latin"],
@@ -27,11 +31,12 @@ const fontText = Manrope({
   variable: "--font-text",
 });
 
-export default function Layout({
+export default async function Layout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const sesion = await getServerSession(authOptions);
   return (
     <html lang="en">
       <body
@@ -80,26 +85,38 @@ export default function Layout({
                 </svg>
                 <span className="font-bold">GitHub</span>
               </Link>
-              <Link href={'/auth/login'} className="bg-[#009E5B] hover:bg-[#009e5ce0] text-white rounded-lg px-4 py-2">
-                Login
-              </Link>
+              {sesion?.user ?
+                <>
+                  <ButtonLogout />
+                  <span
+                    className="flex items-center gap-2 border border-muted-foreground rounded-lg px-4 py-2"
+                  >
+                    <CircleUser />  <span className="font-bold">{sesion?.user.name}</span>
+                  </span>
+                </>
+                :
+                <Link href={'/auth/login'} className="bg-[#009E5B] hover:bg-[#009e5ce0] text-white rounded-lg px-4 py-2">
+                  Login
+                </Link>
+
+              }
             </nav>
           </header>
           {children}
         </div>
         <ToastContainer
-        position="bottom-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-        style={{ fontSize: '1.5rem !important' }}
-      />
+          position="bottom-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+          style={{ fontSize: '1.5rem !important' }}
+        />
       </body>
     </html>
   );

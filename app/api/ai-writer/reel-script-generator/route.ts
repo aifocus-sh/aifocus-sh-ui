@@ -220,7 +220,6 @@ async function getMedia(type: string, q: string, category: string) {
   const url = `https://pixabay.com/api/${
     type === "video" ? "videos/" : ""
   }?${params.toString()}&q=${query}`;
-  console.log(url);
   const options = { method: "GET" };
 
   const response = await fetch(url, options);

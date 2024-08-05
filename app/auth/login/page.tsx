@@ -4,30 +4,32 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Link from "next/link";
+import { FormUserValues } from "@/types/forms";
 
 function LoginPage() {
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm();
+	} = useForm<FormUserValues>();
 	const router = useRouter();
-	const [error, setError] = useState(null);
+	const [error, setError] = useState<string>('');
 
 	const onSubmit = handleSubmit(async (data) => {
-		console.log(data);
-
 		const res = await signIn("credentials", {
 			email: data.email,
 			password: data.password,
 			redirect: false,
 		});
 
-		console.log(res);
-		if (res.error) {
-			setError(res.error);
+		if (res?.error) {
+			setError(res.error.toString());
 		} else {
-			router.push("/dashboard");
+			if (res?.url) {
+				router.push(res.url);
+			} else {
+				router.push("/");
+			}
 			router.refresh();
 		}
 	});
