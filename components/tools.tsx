@@ -7,29 +7,29 @@ export default function Tools() {
     {
       name: (
         <>
-          <XIcon className="w-5 h-5" /> Twitter Threads Generator{" "}
+          <XIcon className="w-5 h-5" /> Hilos de twitter{" "}
         </>
       ),
       description:
-        "Convert articles to Twitter threads easily with our innovative tool.",
+        "Genera hilo de twitter facilmente escribiendo solamente el topico como contexto",
       link: "/twitter-threads-generator",
       popular: true,
     },
     {
-      name: "CSV to graph",
+      name: "CSV a Grafica",
       description:
-        "Uses historical data to convert it to an eye-catching graph",
+        "Usa el AI para generar una grafica a partir de un archivo CSV de datos historicos",
       link: "/text-to-graph",
     },
     {
       name: "Seo meta tags",
       description:
-        "Create SEO-optimized meta tags for your service, product or page",
+        "Optimiza tu contenido de SEO con el generador de meta tags",
       link: "/generate-seo-meta-tags",
       popular: true,
     },
     {
-      name: "Instagram caption",
+      name: "Atrae a tu audiencia con mejores captions para tus publicaciones de Instagram",
       description: "Generate the perfect caption for your Instagram posts",
       link: "/instagram-caption",
     },
@@ -41,7 +41,7 @@ export default function Tools() {
     {
       name: "Article generator",
       description:
-        "Generate an article for your service, product or page with our AI",
+        "Si te quedaste sin ideas, te recomendamos generar un articulo siempre pensando en la Keyword que quieres posicionar",
       link: "/article-generator",
     },
   ];

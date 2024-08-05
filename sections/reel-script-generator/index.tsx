@@ -90,8 +90,6 @@ export default function ReelScriptGenerator() {
     resolver: zodResolver(schema),
   });
 
-  console.log(object);
-
   return (
     <main className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
       <div>
