@@ -13,25 +13,38 @@ function LoginPage() {
 		formState: { errors },
 	} = useForm<FormUserValues>();
 	const router = useRouter();
+
+
+
 	const [error, setError] = useState<string>('');
 
 	const onSubmit = handleSubmit(async (data) => {
+
+		let pathName = '/'
+		const url = new URL(window.location.href);
+
+		const queryParams = new URLSearchParams(url.search);
+
+		const urlCallback = queryParams.get('callbackUrl');
+
+		if (!!urlCallback) {
+
+			pathName = new URL(urlCallback!).pathname;
+		}	
+
 		const res = await signIn("credentials", {
 			email: data.email,
 			password: data.password,
-			redirect: false,
+			redirect: true,
+			callbackUrl: pathName
 		});
 
 		if (res?.error) {
 			setError(res.error.toString());
-		} else {
-			if (res?.url) {
-				router.push(res.url);
-			} else {
-				router.push("/");
-			}
-			router.refresh();
-		}
+		} 
+		// else {		
+		// 	router.refresh();
+		// }
 	});
 
 	return (

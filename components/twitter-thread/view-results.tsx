@@ -18,7 +18,6 @@ export default function ViewResults({ object }: ViewResultsProps) {
       console.log(`texto copiado del id: ${id}`);
     });
   };
-  console.log(object);
   return (
     <Accordion
       type="multiple"
