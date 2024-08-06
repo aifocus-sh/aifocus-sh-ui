@@ -26,16 +26,13 @@ function RegisterPage() {
 		if (res.ok) {
 			router.push('/auth/login');
 		}
-
-		const resJson = await res.json();
-
-		console.log(resJson, 'usuario registrado')
+		await res.json();
 	});
 
 	return (
 		<div className="h-[calc(100vh-7rem)] flex justify-center items-center">
 			<form action={""} onSubmit={onSubmit} className="w-1/4">
-				<h2 className="text-slate-200 font-bold text-4xl mb-4">Registro</h2>
+				<h2 className="text-slate-200 font-bold text-4xl mb-4">Register</h2>
 				<label className="text-slate-500 block text-sm" htmlFor="username">
 					Username
 				</label>

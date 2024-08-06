@@ -7,11 +7,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { getServerSession } from "next-auth";
 import { signOut } from 'next-auth/react';
 import { authOptions } from "./api/auth/[...nextauth]/route";
 import { CircleUser } from "lucide-react";
 import { ButtonLogout } from "./auth/logout/buttonLogout";
+import SessionWrapper from "@/components/sessionWrapper";
+import Navbar from "@/components/navbar";
 
 const fontHeading = Inter({
   subsets: ["latin"],
@@ -32,11 +33,10 @@ const fontText = Manrope({
 });
 
 export default async function Layout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  const sesion = await getServerSession(authOptions);
+  children
+}: {
+  children: React.ReactNode
+}) {
   return (
     <html lang="en">
       <body
@@ -48,6 +48,8 @@ export default async function Layout({
         )}
       >
         <div className="min-h-screen max-w-7xl mx-auto p-4">
+        <SessionWrapper>
+
           <header className="flex items-center justify-between mb-8">
             <div className="flex items-center space-x-2">
               <Image
@@ -85,24 +87,14 @@ export default async function Layout({
                 </svg>
                 <span className="font-bold">GitHub</span>
               </Link>
-              {sesion?.user ?
-                <>
-                  <ButtonLogout />
-                  <span
-                    className="flex items-center gap-2 border border-muted-foreground rounded-lg px-4 py-2"
-                  >
-                    <CircleUser />  <span className="font-bold">{sesion?.user.name}</span>
-                  </span>
-                </>
-                :
-                <Link href={'/auth/login'} className="bg-[#009E5B] hover:bg-[#009e5ce0] text-white rounded-lg px-4 py-2">
-                  Login
-                </Link>
-
-              }
+              
+              <Navbar />
             </nav>
           </header>
-          {children}
+            {children}
+          </SessionWrapper>
+
+
         </div>
         <ToastContainer
           position="bottom-center"

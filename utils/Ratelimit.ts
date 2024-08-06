@@ -4,8 +4,8 @@ import { Ratelimit } from "@upstash/ratelimit";
 import { headers } from "next/headers";
 
 export const validateRateLimit = async (): Promise<UpstashResponse> => {
-    const LIMIT_REQUEST = 2;
-    const LIMIT_DURATION = "10m";
+    const LIMIT_REQUEST = 10;
+    const LIMIT_DURATION = "24h";
     const rateLimit = new Ratelimit(
       {
         redis,

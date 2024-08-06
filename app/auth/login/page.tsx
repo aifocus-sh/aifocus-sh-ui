@@ -1,7 +1,7 @@
 "use client";
 import { useForm } from "react-hook-form";
-import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { signIn, useSession } from "next-auth/react";
+import { useRouter, redirect, useParams } from "next/navigation";
 import { useState } from "react";
 import Link from "next/link";
 import { FormUserValues } from "@/types/forms";
@@ -11,40 +11,40 @@ function LoginPage() {
 		register,
 		handleSubmit,
 		formState: { errors },
+		
 	} = useForm<FormUserValues>();
 	const router = useRouter();
-
-
-
+	const [loading, setLoading] = useState(false);
+	const params = useParams<{callbackurl: string}>();
+	const {status} = useSession();
 	const [error, setError] = useState<string>('');
 
+	if(status === "authenticated"){
+		router.push(params.callbackurl ? params.callbackurl : '/')
+	}
+
+	console.log(params)
+
 	const onSubmit = handleSubmit(async (data) => {
-
-		let pathName = '/'
-		const url = new URL(window.location.href);
-
-		const queryParams = new URLSearchParams(url.search);
-
-		const urlCallback = queryParams.get('callbackUrl');
-
-		if (!!urlCallback) {
-
-			pathName = new URL(urlCallback!).pathname;
-		}	
+		setLoading(true);
 
 		const res = await signIn("credentials", {
 			email: data.email,
 			password: data.password,
-			redirect: true,
-			callbackUrl: pathName
-		});
+			redirect: false,
+			callbackUrl: params.callbackurl ? params.callbackurl : '/'
+			});
 
 		if (res?.error) {
 			setError(res.error.toString());
-		} 
-		// else {		
-		// 	router.refresh();
+		}
+		// else {
+		// 	const promise = new Promise((resolve) => setTimeout(resolve, 3000));
+		// 	await promise;
+		// 	router.push(params.callbackurl ? params.callbackurl : '/');
 		// }
+		
+		setLoading(false);
 	});
 
 	return (
@@ -99,7 +99,7 @@ function LoginPage() {
 			
 
 				<div className="mt-5">
-					<button className="w-full inline-flex items-center justify-center whitespace-nowrap rounded-md ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 bg-[#009E5B] hover:bg-[#009e5ce0] text-white disabled">
+					<button className="w-full inline-flex items-center justify-center whitespace-nowrap rounded-md ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 bg-[#009E5B] hover:bg-[#009e5ce0] text-white">
 						Login
 					</button>
 				</div>
@@ -109,7 +109,7 @@ function LoginPage() {
 						href={"/auth/register"}
 						className="text-yellow-500 text-lg text "
 					>
-						Regiter
+						Register
 					</Link>
 				</div>
 			</form>
