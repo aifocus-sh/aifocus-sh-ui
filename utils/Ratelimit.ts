@@ -3,9 +3,13 @@ import { UpstashResponse } from "@/types/upstash";
 import { Ratelimit } from "@upstash/ratelimit";
 import { headers } from "next/headers";
 
+type Unit = "ms" | "s" | "m" | "h" | "d";
+type Duration = `${number} ${Unit}` | `${number}${Unit}`;
+
 export const validateRateLimit = async (): Promise<UpstashResponse> => {
-    const LIMIT_REQUEST = 10;
-    const LIMIT_DURATION = "24h";
+    const LIMIT_REQUEST = parseInt(process.env.UPSTASH_LIMIT_REQUEST!);
+    const LIMIT_DURATION = process.env.UPSTASH_LIMIT_DURATION! as Duration;
+
     const rateLimit = new Ratelimit(
       {
         redis,

@@ -1,6 +1,5 @@
 import Home from "@/sections/home";
 import { Metadata } from "next";
-
 export const metadata: Metadata = {
   title: "Unlocking Creativity with AIfocus.sh - Artificial Intelligence in Writing",
   description:
@@ -21,5 +20,7 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
+
+
   return <Home />;
 }
