@@ -9,7 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Slider } from "@/components/ui/slider";
 import { useState } from "react";
 import { ReelScriptGeneratorSchema } from "@/app/api/ai-writer/reel-script-generator/schema";
-import Image from "next/image";
+import { toast } from "react-toastify";
 
 const schema = z.object({
   title: z.string().min(2),
@@ -75,6 +75,10 @@ export default function ReelScriptGenerator() {
   const { object, submit, isLoading, stop } = useObject({
     api: "/api/ai-writer/reel-script-generator",
     schema: ReelScriptGeneratorSchema,
+    onError: (error) => {
+      stop();
+      toast.info(JSON.parse(error?.message as any)?.error);
+    }
   });
 
   const { control, handleSubmit } = useForm({
@@ -89,6 +93,7 @@ export default function ReelScriptGenerator() {
     },
     resolver: zodResolver(schema),
   });
+
 
   return (
     <main className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">

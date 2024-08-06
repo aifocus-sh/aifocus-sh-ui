@@ -1,4 +1,5 @@
 import ollama from "@/lib/ollama";
+import { validateRateLimit } from "@/utils/Ratelimit";
 import { generateObject } from "ai";
 import { z } from "zod";
 
@@ -10,6 +11,12 @@ export async function POST(req: Request) {
   if (!keyword || !language || !quantity) {
     return Response.json({ error: "Missing parameters" }, { status: 400 });
   }
+
+  	//validate limit rate with  upstash
+	const rateLimit = await validateRateLimit();
+	if (!rateLimit.isPermitted) {
+		return Response.json({ error: `${rateLimit.message}` }, { status: 429 });
+	}
 
   try {
     const result = await generateObject({

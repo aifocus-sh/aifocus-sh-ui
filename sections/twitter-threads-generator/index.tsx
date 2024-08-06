@@ -10,6 +10,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Slider } from "@/components/ui/slider";
 import ViewResults from "@/components/twitter-thread/view-results";
 import { TwitterThread } from "@/app/api/ai-writer/twitter-thread/schema";
+import { toast } from "react-toastify";
 
 const schema = z.object({
   topic: z.string().min(2),
@@ -30,10 +31,15 @@ const schema = z.object({
 });
 
 export default function TwitterThreadGenerator() {
-  const { object, submit, isLoading, stop } = useObject({
-    api: "/api/ai-writer/twitter-thread",
+  const { object, submit, isLoading, stop} = useObject({
+    api: "/api/ai-writer/twitter-thread",    
     schema: TwitterThread,
+    onError: (error) => {
+      stop();
+      toast.info(JSON.parse(error.message as any).error);
+    }
   });
+
 
   const { control, handleSubmit } = useForm({
     defaultValues: {

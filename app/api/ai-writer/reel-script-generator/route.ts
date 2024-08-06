@@ -2,6 +2,7 @@ import { streamObject } from "ai";
 import { z } from "zod";
 import { ReelScriptGeneratorSchema } from "./schema";
 import ollama from "@/lib/ollama";
+import { validateRateLimit } from "@/utils/Ratelimit";
 
 const model = ollama("llama3.1");
 
@@ -76,29 +77,35 @@ const getTimeInSeconds = (time: string) => {
 };
 
 export async function POST(request: Request) {
-  const { title, description, time, tone, temperature } = await request.json();
+	const { title, description, time, tone, temperature } = await request.json();
 
-  const validateRequest = schemaJsonValidator.safeParse({
-    title,
-    description,
-    time,
-    tone,
-  });
+	const validateRequest = schemaJsonValidator.safeParse({
+		title,
+		description,
+		time,
+		tone,
+	});
 
-  if (!validateRequest.success) {
-    return Response.json(
-      { error: true, message: validateRequest.error?.issues },
-      { status: 400 }
-    );
-  }
+	if (!validateRequest.success) {
+		return Response.json(
+			{ error: true, message: validateRequest.error?.issues },
+			{ status: 400 }
+		);
+	}
 
-  try {
-    const result = await streamObject({
-      model,
-      mode: "json",
-      schema: ReelScriptGeneratorSchema,
-      presencePenalty: 0.6,
-      prompt: `
+	//validate limit rate with  upstash
+	const rateLimit = await validateRateLimit();
+	if (!rateLimit.isPermitted) {
+		return Response.json({ error: `${rateLimit.message}` }, { status: 429 });
+	}
+
+	try {
+		const result = await streamObject({
+			model,
+			mode: "json",
+			schema: ReelScriptGeneratorSchema,
+			presencePenalty: 0.6,
+			prompt: `
       You are a marketing expert focused on creating reels for YouTube, Instagram, Facebook and TikTok. Your expertise is focused on reaching your users in the best way and increasing the number of visitors and views on your articles and reels.
   
       These are the initial parameters you will work with:
@@ -161,37 +168,37 @@ export async function POST(request: Request) {
         ]
       }
       `,
-      temperature: temperature || 0.7,
-    });
+			temperature: temperature || 0.7,
+		});
 
-    // const buildScripts = await Promise.all(
-    //   result.object.script.map(async (scene) => {
-    //     if (
-    //       scene.settings.type === "image" ||
-    //       scene.settings.type === "video"
-    //     ) {
-    //       const url = await getMedia(
-    //         scene.settings.type,
-    //         scene.settings.tags_of_image,
-    //         scene.settings.category || "all"
-    //       );
-    //       return {
-    //         ...scene,
-    //         settings: {
-    //           ...scene.settings,
-    //           url,
-    //         },
-    //       };
-    //     } else {
-    //       return scene;
-    //     }
-    //   })
-    // );
+		// const buildScripts = await Promise.all(
+		//   result.object.script.map(async (scene) => {
+		//     if (
+		//       scene.settings.type === "image" ||
+		//       scene.settings.type === "video"
+		//     ) {
+		//       const url = await getMedia(
+		//         scene.settings.type,
+		//         scene.settings.tags_of_image,
+		//         scene.settings.category || "all"
+		//       );
+		//       return {
+		//         ...scene,
+		//         settings: {
+		//           ...scene.settings,
+		//           url,
+		//         },
+		//       };
+		//     } else {
+		//       return scene;
+		//     }
+		//   })
+		// );
 
-    return result.toTextStreamResponse();
-  } catch (error) {
-    return Response.json(error, { status: 500 });
-  }
+		return result.toTextStreamResponse();
+	} catch (error) {
+		return Response.json(error, { status: 500 });
+	}
 }
 
 async function getMedia(type: string, q: string, category: string) {
@@ -213,7 +220,6 @@ async function getMedia(type: string, q: string, category: string) {
   const url = `https://pixabay.com/api/${
     type === "video" ? "videos/" : ""
   }?${params.toString()}&q=${query}`;
-  console.log(url);
   const options = { method: "GET" };
 
   const response = await fetch(url, options);

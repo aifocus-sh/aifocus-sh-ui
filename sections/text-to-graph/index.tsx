@@ -12,6 +12,7 @@ import {
   LibraryCharts,
   LibraryChartsKeys,
 } from "@/components/chart-view/library-charts";
+import { toast } from "react-toastify";
 
 const schema = z.object({
   prompt: z.string().min(1, { message: "Please enter a prompt" }),
@@ -48,6 +49,8 @@ export default function TextToGraph() {
     if (!res.ok) {
       setLoading(false);
       setError(true);
+      const json = await res.json();
+      toast.info(json.error);
       return;
     }
 
@@ -113,7 +116,7 @@ export default function TextToGraph() {
             )}
           />
 
-          <Button variant="success" type="submit" className="mt-4 w-full">
+          <Button variant="success" disabled={loading} type="submit" className="mt-4 w-full">
             Generate Chart
           </Button>
 

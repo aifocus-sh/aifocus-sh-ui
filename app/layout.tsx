@@ -3,10 +3,18 @@
 import { Inter, Manrope } from "next/font/google";
 import { cn } from "@/lib/utils";
 import "./globals.css";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { signOut } from 'next-auth/react';
+import { authOptions } from "./api/auth/[...nextauth]/route";
+import { CircleUser } from "lucide-react";
+import { ButtonLogout } from "./auth/logout/buttonLogout";
+import SessionWrapper from "@/components/sessionWrapper";
+import Navbar from "@/components/navbar";
 import Script from "next/script";
+
 
 const fontHeading = Inter({
   subsets: ["latin"],
@@ -26,11 +34,11 @@ const fontText = Manrope({
   variable: "--font-text",
 });
 
-export default function Layout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default async function Layout({
+  children
+}: {
+  children: React.ReactNode
+}) {
   return (
     <html lang="en">
       <body
@@ -42,6 +50,8 @@ export default function Layout({
         )}
       >
         <div className="min-h-screen max-w-7xl mx-auto p-4">
+        <SessionWrapper>
+
           <header className="flex items-center justify-between mb-8">
             <div className="flex items-center space-x-2">
               <Image
@@ -79,13 +89,28 @@ export default function Layout({
                 </svg>
                 <span className="font-bold">GitHub</span>
               </Link>
-              <Button className="bg-[#009E5B] hover:bg-[#009e5ce0] text-white disabled cursor-not-allowed">
-                Login
-              </Button>
+              
+              <Navbar />
             </nav>
           </header>
-          {children}
+            {children}
+          </SessionWrapper>
+
+
         </div>
+        <ToastContainer
+          position="bottom-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+          style={{ fontSize: '1.5rem !important' }}
+        />
       </body>
 
       <Script id="clarity-script" strategy="afterInteractive">
