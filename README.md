@@ -98,4 +98,5 @@ eso es lo que se me ocurre hasta ahora...
 ## Authors
 
 - Iván Montes ([@iandres_montes](https://twitter.com/iandres_montes)) - [La Silla Vacía](https://www.lasillavacia.com/)
+- Deimer Nuñez ([@iandres_montes](https://www.linkedin.com/in/deimer-andres-nu%C3%B1ez-novoa-56212a181/))
 
