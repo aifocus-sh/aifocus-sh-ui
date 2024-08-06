@@ -13,6 +13,8 @@ import { CircleUser } from "lucide-react";
 import { ButtonLogout } from "./auth/logout/buttonLogout";
 import SessionWrapper from "@/components/sessionWrapper";
 import Navbar from "@/components/navbar";
+import Script from "next/script";
+
 
 const fontHeading = Inter({
   subsets: ["latin"],
@@ -110,6 +112,14 @@ export default async function Layout({
           style={{ fontSize: '1.5rem !important' }}
         />
       </body>
+
+      <Script id="clarity-script" strategy="afterInteractive">
+        {`(function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "nik1170zr9")`}
+      </Script>
     </html>
   );
 }

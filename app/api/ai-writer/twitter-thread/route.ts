@@ -3,7 +3,9 @@ import { z } from "zod";
 import { TwitterThread } from "./schema";
 import ollama from "@/lib/ollama";
 import { validateRateLimit } from "@/utils/Ratelimit";
-const model = ollama("llama3.1")
+import prisma from "@/lib/prisma";
+const model = "llama3.1"
+
 
 export const maxDuration = 60;
 
@@ -24,10 +26,14 @@ const schema = z.object({
   quantity: z.number().min(1).max(5),
 });
 
+
+const insert = async (data: any) => {
+  await prisma.usage.create({ data });
+}
+
 export async function POST(request: Request) {
   const { topic, tone, quantityTweets, quantity, temperature } =
     await request.json();
-
 
   const validateRequest = schema.safeParse({
     topic,
@@ -51,7 +57,7 @@ export async function POST(request: Request) {
 
   try {
     const result = await streamObject({
-      model,
+      model: ollama(model),
       mode: "json",
       schema: TwitterThread,
       prompt: `You are a marketing expert specialized in creating threads on Twitter. You will receive the following information:
@@ -90,8 +96,19 @@ export async function POST(request: Request) {
 
       `,
       temperature: temperature || 0.7,
+      onFinish: ({ object }) => {
+        insert({
+          data: {
+            content: object as any,
+            parameters: { topic, tone, quantityTweets, quantity, temperature },
+            endpoint: "/api/ai-writer/twitter-thread",
+            model: model,
+          },
+        });
+      },
     });
-    return result.toTextStreamResponse()
+
+    return result.toTextStreamResponse();
   } catch (error) {
     console.log(error);
     console.log("process.env.OLLAMA_MODEL: ", process.env.OLLAMA_MODEL);
