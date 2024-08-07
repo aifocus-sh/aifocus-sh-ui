@@ -2,6 +2,7 @@ import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import db from '@/lib/db'
 import bcrypt from 'bcrypt'
+import { redirect } from "next/dist/server/api-utils";
 
 export const authOptions = {
   providers: [

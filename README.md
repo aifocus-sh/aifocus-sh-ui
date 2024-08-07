@@ -74,8 +74,17 @@ pnpm dev
 bun dev
 ```
 
+## Datos para nerds
+1. Peso del modelo de llama 3.1:8B = 4GB
+2. Servidor de produccion:
+   - 16 cores
+   - 64 de ram
+   - OS: Ubuntu 22
+   - SSD: 2TB
+   - GPU: NO
+
 ## Conclusions
-Fue un reto bastante interesante, descubri muchas cosas por primera vez y me sorprendio mucho la facilidad con la que alguien puede crear su propia herramienta de AI, utilizando [Vercel AI SDK](https://sdk.vercel.ai/docs) cualquiera puede construir y servir su modelo al publico. Aunque claro, siento que aun le hace falta trabajo al SDK ai, el `experimental_useObject` falla muchas veces y claro, entiendo que aun esta de forma experimental o beta. Tambien seria bueno que pudiese tener un refetch, eso ayudaria a refrescar resultados evitando asi `submit()`
+Fue un reto bastante interesante, descubri muchas cosas por primera vez y me sorprendio mucho la facilidad con la que alguien puede crear su propia herramienta de AI, utilizando [Vercel AI SDK](https://sdk.vercel.ai/docs) cualquiera puede construir y servir su modelo al publico.
 
 Ejecutarlo en CPU ha sido todo un problema, a pesar de tener un cercer con 16 cores, 64 de ram y utilizando solo el modelo de 4GB htop indica que el procesador esta trabajando a tope con un solo request, eso inutiliza la aplicacion web, es una pena, si tienes gpu te recomiendo mejor descargarlo y probarlo en local...
 

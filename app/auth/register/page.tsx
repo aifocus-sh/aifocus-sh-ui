@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FormUserValues } from '@/types/forms'
 import { toast } from "react-toastify";
@@ -9,8 +9,9 @@ import { useRouter } from "next/navigation";
 function RegisterPage() {
 	const { register, handleSubmit, formState: { errors } } = useForm<FormUserValues>();
 	const router = useRouter();
-
+	const [isLoading, setLoading] = useState(false);
 	const onSubmit = handleSubmit( async (data) => {
+		setLoading(false);
 		const res = await fetch('/api/auth/register', {
 			method: 'POST',
 			body: JSON.stringify({
@@ -24,9 +25,13 @@ function RegisterPage() {
 		})
 
 		if (res.ok) {
+			setLoading(false);
+			toast.success('Registration completed successfully. Welcome!')
 			router.push('/auth/login');
+		} else {
+			toast.info('An error occurred while attempting to register. Please try again later.')
 		}
-		await res.json();
+		setLoading(false);
 	});
 
 	return (
@@ -115,6 +120,25 @@ function RegisterPage() {
 		
 				<div className="mt-5">
 				<button className="w-full inline-flex items-center justify-center whitespace-nowrap rounded-md ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 bg-[#009E5B] hover:bg-[#009e5ce0] text-white disabled">
+				{isLoading && (
+							<>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									className="animate-spin w-6 h-6 ml-2"
+									width="44"
+									height="44"
+									viewBox="0 0 24 24"
+									strokeWidth="1.5"
+									stroke="#fff"
+									fill="none"
+									strokeLinecap="round"
+									strokeLinejoin="round"
+								>
+									<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+									<path d="M12 3a9 9 0 1 0 9 9" />
+								</svg>
+							</>
+						)}
 					Register
 				</button>
 				</div>
