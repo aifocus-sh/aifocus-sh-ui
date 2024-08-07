@@ -12,7 +12,7 @@ export default function Broadcast() {
       <div className="bg-inherit text-white border-2 border-white p-6 rounded-lg h-full">
         <div className="flex items-center justify-between">
           <span className="text-sm bg-white text-black px-2 py-1 rounded-full">
-            What's next?
+            {`What's next?`}
           </span>
         </div>
         <h3 className="text-2xl font-bold mt-4">
@@ -20,13 +20,7 @@ export default function Broadcast() {
         </h3>
 
         <p className="text-lg mt-4">
-          This project aims to create an automated system to generate and
-          publish generate and publish articles about common JavaScript problems
-          and their solutions. their solutions. The articles will be optimized
-          for SEO and will be accompanied with relevant images obtained from
-          Pixabay. The project seeks to evaluate the impact of AI-generated
-          content in terms of revenue and engagement, sharing the results
-          anonymously. engagement, sharing the results anonymously.
+          {`This project aims to create an automated system to generate and publish generate and publish articles about common JavaScript problems and their solutions. their solutions. The articles will be optimized for SEO and will be accompanied with relevant images obtained from Pixabay. The project seeks to evaluate the impact of AI-generated content in terms of revenue and engagement, sharing the results anonymously. engagement, sharing the results anonymously.`}
         </p>
 
         <Image
