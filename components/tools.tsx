@@ -7,42 +7,46 @@ export default function Tools() {
     {
       name: (
         <>
-          <XIcon className="w-5 h-5" /> Hilos de twitter{" "}
+          <XIcon className="w-5 h-5" />
+          Threads Generator{" "}
         </>
       ),
       description:
-        "Genera hilo de twitter facilmente escribiendo solamente el topico como contexto",
+        "Generate twitter thread easily by typing only the topic as context",
       link: "/twitter-threads-generator",
       popular: true,
     },
     {
-      name: "CSV a Grafica",
-      description:
-        "Usa el AI para generar una grafica a partir de un archivo CSV de datos historicos",
-      link: "/text-to-graph",
-    },
-    {
-      name: "Seo meta tags",
-      description:
-        "Optimiza tu contenido de SEO con el generador de meta tags",
-      link: "/generate-seo-meta-tags",
+      name: "Instagram caption",
+      description: "Generate the perfect caption for your Instagram posts",
+      link: "/instagram-caption",
       popular: true,
     },
     {
-      name: "Atrae a tu audiencia con mejores captions para tus publicaciones de Instagram",
-      description: "Generate the perfect caption for your Instagram posts",
-      link: "/instagram-caption",
+      name: "Seo meta tags",
+      description: "Optimize your SEO content with the meta tag generator",
+      link: "/generate-seo-meta-tags",
     },
-    // {
-    //   name: "Reel Script Generator",
-    //   description: "Cut down on the time and effort it takes to create winning Instagram Reels with our powerful AI Script Generator.",
-    //   link: "/reel-script-generator",
-    // },
+    {
+      name: "CSV to Graph",
+      description:
+        "Use the AI to generate a graph from a CSV file of historical data.",
+      link: "/text-to-graph",
+      beta: true,
+    },
     {
       name: "Article generator",
       description:
-        "Si te quedaste sin ideas, te recomendamos generar un articulo siempre pensando en la Keyword que quieres posicionar",
+        "If you ran out of ideas, we recommend you to generate an article always thinking about the Keyword you want to position.",
       link: "/article-generator",
+      beta: true,
+    },
+    {
+      name: "Reel Script Generator",
+      description:
+        "Cut down on the time and effort it takes to create winning Instagram Reels with our powerful AI Script Generator.",
+      link: "/reel-script-generator",
+      soon: true,
     },
   ];
   return (
@@ -53,15 +57,32 @@ export default function Tools() {
         {tools.map((tool, i) => (
           <Link
             key={`tool-${i}`}
-            href={tool.link}
-            className="flex justify-between items-center relative border-2 hover:border-black rounded-lg text-left cursor-pointer hover:bg-slate-100 py-2 px-3 h-auto"
+            href={tool.soon ? "#" : tool.link}
+            className={`flex justify-between items-center relative border-2 hover:border-yellow-500 rounded-lg text-left cursor-pointer hover:bg-slate-100 py-2 px-3 h-auto ${
+              tool.soon ? "opacity-50" : ""
+            }`}
             prefetch={false}
           >
             <div className="flex items-start flex-col gap-2">
-              <span className="gap-2 flex items-center text-left text-md font-semibold capitalize">
-                {tool.name}
-              </span>
-              <p className="text-gray-500 text-sm"> {tool.description}</p>
+              <div className="flex items-center gap-2">
+                <span className="gap-2 flex items-center text-left text-md font-semibold capitalize">
+                  {tool.name}
+                </span>
+                {tool.soon && (
+                  <span className="py-[1px] px-[4px] bg-green-500 rounded-md text-black">
+                    Soon
+                  </span>
+                )}
+              </div>
+              <p className="text-gray-500 text-sm">
+                {" "}
+                {tool.beta && (
+                  <span className="py-[1px] px-[4px] bg-yellow-500 rounded-md text-black">
+                    Beta
+                  </span>
+                )}{" "}
+                {tool.description}
+              </p>
             </div>
 
             {tool.popular && (

@@ -33,9 +33,9 @@ export default function InstagramCaption() {
 
   const { control, handleSubmit } = useForm({
     defaultValues: {
-      title: "",
+      title: "Midudev felicidades por tus 302k suscripciones",
       tone: "excited",
-      description: "",
+      description: "Esperamos que sigas dando tus grandes aportes a la comunidad, gracias y felicitaciones!",
       quantity: 2,
       temperature: 0.7,
     },

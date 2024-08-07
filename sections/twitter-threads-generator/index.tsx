@@ -31,15 +31,14 @@ const schema = z.object({
 });
 
 export default function TwitterThreadGenerator() {
-  const { object, submit, isLoading, stop} = useObject({
-    api: "/api/ai-writer/twitter-thread",    
+  const { object, submit, isLoading, stop } = useObject({
+    api: "/api/ai-writer/twitter-thread",
     schema: TwitterThread,
     onError: (error) => {
       stop();
       toast.info(JSON.parse(error.message as any).error);
-    }
+    },
   });
-
 
   const { control, handleSubmit } = useForm({
     defaultValues: {
@@ -58,7 +57,7 @@ export default function TwitterThreadGenerator() {
         <div className="flex justify-between">
           <div className="flex flex-col gap-2 mb-4">
             <h1 className="text-3xl font-bold  flex items-center gap-2">
-              Generate Thread{" "}
+              Threads Generator{" "}
               <XIcon className="w-9 h-9 text-white" stroke={"#fff"} />
             </h1>
           </div>
@@ -246,10 +245,12 @@ export default function TwitterThreadGenerator() {
         <h1 className="text-3xl font-bold mb-6 flex items-center gap-2">
           Thread
           {isLoading && (
-            <Button className="bg-red-600 hover:bg-red-700 h-7" onClick={stop}>Stop</Button>
+            <Button className="bg-red-600 hover:bg-red-700 h-7" onClick={stop}>
+              Stop
+            </Button>
           )}
         </h1>
-        
+
         <ViewResults object={object as any} />
       </div>
     </main>
