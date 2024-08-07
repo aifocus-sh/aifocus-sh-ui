@@ -44,7 +44,7 @@ First, install dependencies:
 ```bash
 npm i
 ```
-
+### Configure Ollama
 Install ollama in your computer:
 
 [Install ollama](https://ollama.com/download)
@@ -61,6 +61,30 @@ Export the variable or copy .env.local:
 export OLLAMA_BASE_URL="http://localhost:11434/api"
 export OLLAMA_MODEL="<llama-model>"
 ```
+
+### Configure PRISMA and BDSQlite
+Export the variable or copy .env:
+
+```bash
+export DATABASE_URL="file:./dev.db"
+```
+
+Sincronizar el esquema de tu base de datos con tu archivo `schema.prisma`
+```bash
+pnx prisma db push
+```
+
+### Configure UPSTASH and NEXTAUTH
+Configura tu cuenta de UPSTASH en (https://upstash.com/) y una base de datos para controlar el ratelimit, debe proporcionarte una URL (`UPSTASH_URL`) y un token (`UPSTASH_TOKEN`). Vas a poder cambiar el `UPSTASH_LIMIT_REQUEST` y el `UPSTASH_LIMIT_DURATION` segun tu necesidad.
+```bash
+export UPSTASH_URL=https://upstash.io
+export UPSTASH_TOKEN=""
+export UPSTASH_LIMIT_REQUEST=10
+export UPSTASH_LIMIT_DURATION=24h
+export NEXTAUTH_URL=http://localhost:3000 
+export NEXTAUTH_SECRET=secret
+```
+
 
 Run the development server:
 
